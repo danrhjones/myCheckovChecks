@@ -5,7 +5,7 @@ class TagCheck(BaseResourceCheck):
     def __init__(self):
         name = "check tags"
         checkov_id = "MY_AWS_1"
-        supported_resources = ['aws_s3_bucket']
+        supported_resources = ['*']
         categories = [CheckCategories.GENERAL_SECURITY]
         super().__init__(name=name, id=checkov_id, categories=categories, supported_resources=supported_resources)
 
