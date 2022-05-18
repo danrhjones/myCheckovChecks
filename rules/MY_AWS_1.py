@@ -12,8 +12,7 @@ class TagCheck(BaseResourceCheck):
     def scan_resource_conf(self, conf):
 
         if conf.get("tags", []):
-            env = conf["tags"][0].get("Environment", {})
-            if env in ["dg", "Programme"]:
+            if set(["dg", "Programme"]).issubset(conf["tags"][0]):
                 return CheckResult.PASSED
         return CheckResult.FAILED
 
