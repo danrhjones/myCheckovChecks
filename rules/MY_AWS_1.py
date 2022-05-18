@@ -10,9 +10,8 @@ class TagCheck(BaseResourceCheck):
         super().__init__(name=name, id=checkov_id, categories=categories, supported_resources=supported_resources)
 
     def scan_resource_conf(self, conf):
-
         if conf.get("tags", []):
-            if set(["dg", "Programme"]).issubset(conf["tags"][0]):
+            if set(conf["tags"][0]).issubset(["dg", "Programme"]):
                 return CheckResult.PASSED
         return CheckResult.FAILED
 
