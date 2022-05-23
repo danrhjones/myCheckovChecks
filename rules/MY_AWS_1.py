@@ -10,6 +10,10 @@ class TagCheck(BaseResourceCheck):
         super().__init__(name=name, id=checkov_id, categories=categories, supported_resources=supported_resources)
 
     def scan_resource_conf(self, conf):
+        bad_ones = ['aws_s3_access_point', 'chieck']
+        if conf.get("__address__").split(".")[0] in bad_ones:
+            return CheckResult.UNKNOWN
+
         if conf.get("tags_all", []):
             if any(elem in conf["tags_all"][0]  for elem in ["dg", "Programme"]):
                 return CheckResult.PASSED
